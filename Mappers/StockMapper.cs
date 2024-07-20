@@ -15,7 +15,21 @@ public static class StockMapper
             Purchase = model.Purchase,
             LastDiv = model.LastDiv,
             Industry = model.Industry,
-            MarketCap = model.MarketCap
+            MarketCap = model.MarketCap,
+            Comments = model.Comments.Select(c => c.ToCommentDto()).ToList(),
         };
-    } 
+    }
+
+    public static Stock CreateStockRequestDto(this CreateStockDto stockDto)
+    {
+        return new Stock
+        {
+            Symbol = stockDto.Symbol,
+            CompanyName = stockDto.CompanyName,
+            Purchase = stockDto.Purchase,
+            LastDiv = stockDto.LastDiv,
+            Industry = stockDto.Industry,
+            MarketCap = stockDto.MarketCap
+        };
+    }
 }
